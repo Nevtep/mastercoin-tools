@@ -729,7 +729,7 @@ def update_initial_icon_details(t):
                 info('BUG: exodus tx with no to_address: '+str(t))
                 return False
         else:
-            info('BUG: non exodus valid msc tx without '+e+' ('+t['tx_type_str']+') on '+tx_hash)
+            info('BUG: non exodus valid msc tx without '+str(e)+' ('+t['tx_type_str']+') on '+t['tx_hash'])
             return False
     return True
 
