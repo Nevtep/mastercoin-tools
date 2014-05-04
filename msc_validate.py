@@ -927,11 +927,14 @@ def generate_api_jsons():
                 sorted_currency_tx_list['Mastercoin'].append(t)
                 sorted_currency_tx_list['Test Mastercoin'].append(t)
             else:
-                if t['currencyId']==reverse_currency_type_dict['Mastercoin']:
-                    sorted_currency_tx_list['Mastercoin'].append(t)
-                else:
-                    if t['currencyId']==reverse_currency_type_dict['Test Mastercoin']:
-                        sorted_currency_tx_list['Test Mastercoin'].append(t)
+                try:
+                    if t['currencyId']==reverse_currency_type_dict['Mastercoin']:
+                        sorted_currency_tx_list['Mastercoin'].append(t)
+                    else:
+                        if t['currencyId']==reverse_currency_type_dict['Test Mastercoin']:
+                            sorted_currency_tx_list['Test Mastercoin'].append(t)
+                except KeyError as e:
+                    info("BUG: Transaction without currencyId: "+str(t))
     # and reverse sort
     for c in coins_list:
         sorted_currency_tx_list[c]=sorted(sorted_currency_tx_list[c], \
